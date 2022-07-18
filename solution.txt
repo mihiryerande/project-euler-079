@@ -1,0 +1,35 @@
+For this problem, the solution is not difficult to reach by simple logic.
+
+Refer to `keylog_clean.txt` for the simplified passcode attempts.
+
+Idea 1:
+    First, we notice that only the digits 01236789 appear in the attempts.
+    This means that the shortest satisfactory passcode need not include digits 4 or 5.
+    Since all these digits must be included as well,
+      the passcode must be at least 8 digits long,
+      including each of them at least once.
+
+Idea 2:
+    It is not clear if digits can be duplicated in a valid passcode.
+
+    We notice that there is no explicit duplication in any individual attempt,
+      that is, no attempt contains duplicated digits.
+
+    A simple way to see if a digit should be duplicated is by
+      checking whether some digit occurs both before and after another digit.
+    For example, if we saw digits ordered like '2_1' and '1_2' in the attempts,
+      then we would know that there must be at least an extra 1 or 2 in the passcode.
+    However, focusing on any hypothetical digit, we find that this never occurs.
+    For example, there is no intersection between digits occurring to the left of any 1
+      and to the right of any 1.
+    This implies no duplication of digits.
+
+Idea 3:
+    Given Idea #2, we can determine the passcode quite easily.
+    First we see that 7 only ever appears as the first digit of an attempt,
+      so we know that passcode must be '7 _ _ ...'.
+    Then, if we ignore 7 and do the same with the remaining digits,
+      we see that 3 is the next digit in the same situation,
+      so the next passcode digit must be 3.
+
+    Continuing in this way, we find that the full passcode must be " 7 3 1 6 2 8 9 0 "
